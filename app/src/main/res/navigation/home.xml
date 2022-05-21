@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    app:startDestination="@id/moneyFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/moneyFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.MoneyFragment"
+        android:label="MoneyFragment" />
+    <fragment
+        android:id="@+id/valuesListFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.ValuesListFragment"
+        android:label="ValuesListFragment" >
+        <action
+            android:id="@+id/action_valuesListFragment_to_editValueFragment2"
+            app:destination="@id/editValueFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/editValueFragment2"
+        android:name="com.esteban.lopez.budget.view.fragments.EditValueFragment"
+        android:label="EditValueFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
+</navigation>

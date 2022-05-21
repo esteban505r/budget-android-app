@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Budget App</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="incomes">Ingresos</string>
+    <string name="expenses">Egresos</string>
+    <string name="delete">Eliminar</string>
+    <string name="incomesAndExpenses">Ingresos y Egresos</string>
+    <string name="income">Ingreso</string>
+    <string name="expense">Egreso</string>
+    <string name="edit_value">Editar Valor</string>
+    <string name="error_empty_fields">Todos los campos deben ser rellenados</string>
+    <string name="value_updated">Valor actualizado correctamente</string>
+    <string name="error_value_updated">Error actualizando el valor</string>
+    <string name="error_digits_only">El campo de valor debe ser numerico</string>
+    <string name="incomesAndExpensesEmpty">No tienes ingresos ni egresos, agrega uno!</string>
+    <string name="category">Categoria</string>
+
+    <string-array name="value_type">
+        <item>Ingreso</item>
+        <item>Gasto</item>
+    </string-array>
+</resources>

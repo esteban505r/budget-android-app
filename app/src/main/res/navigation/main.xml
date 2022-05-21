@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_incomesFragment"
+            app:destination="@id/incomesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_expensesFragment"
+            app:destination="@id/expensesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/incomesFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.IncomesFragment"
+        android:label="IncomesFragment" >
+        <action
+            android:id="@+id/action_incomesFragment_to_editValueFragment"
+            app:destination="@id/editValueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expensesFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.ExpensesFragment"
+        android:label="ExpensesFragment" >
+        <action
+            android:id="@+id/action_expensesFragment_to_editValueFragment"
+            app:destination="@id/editValueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editValueFragment"
+        android:name="com.esteban.lopez.budget.view.fragments.EditValueFragment"
+        android:label="EditValueFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
+    </fragment>
+</navigation>
