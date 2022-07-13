@@ -23,13 +23,17 @@ class Utils {
             }
         }
 
-        fun formatNumberToStringWithoutLetters(value: Double):String{
-           if(value!=-1.0){
-               val df = DecimalFormat("###,###.#")
-               return df.format(value)
-           }
-            else{
-                return ""
+        fun formatNumberToStringWithoutLetters(value: Double?):String{
+           try{
+               if(value!=-1.0){
+                   val df = DecimalFormat("###,###.#")
+                   return df.format(value)
+               }
+               else{
+                   return "0"
+               }
+           }catch (e:Exception){
+               return "0"
            }
         }
 

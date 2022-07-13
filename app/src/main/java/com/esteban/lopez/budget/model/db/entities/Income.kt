@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity
+@Entity()
 data class Income(
     @PrimaryKey(autoGenerate = true) override val id:Int? = null,
     @ColumnInfo override val value:Double,

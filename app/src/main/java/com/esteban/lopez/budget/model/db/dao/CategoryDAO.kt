@@ -13,4 +13,13 @@ interface CategoryDAO {
 
     @Query("SELECT * FROM category")
     suspend fun getAllAwaiting(): List<Category>
+
+    @Insert
+    suspend fun insert(category: Category): Long
+
+    @Delete
+    suspend fun delete(category: Category): Int
+
+    @Update
+    suspend fun update(category: Category):Int
 }

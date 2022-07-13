@@ -17,6 +17,18 @@ class CategoryViewModel(private val categoryRepository: CategoryRepository) : Vi
         return categoryRepository.getAll()
     }
 
+    suspend fun insert(category: Category):Long{
+        return categoryRepository.insert(category)
+    }
+
+    suspend fun delete(category: Category):Int {
+        return categoryRepository.delete(category)
+    }
+
+    suspend fun update(category: Category):Int {
+        return categoryRepository.update(category)
+    }
+
 }
 
 class CategoryViewModelFactory(private val repository: CategoryRepository) : ViewModelProvider.Factory {

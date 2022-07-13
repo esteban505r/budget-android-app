@@ -1,6 +1,5 @@
 package com.esteban.lopez.budget.view.fragments
 
-import android.app.AlertDialog
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,8 +19,8 @@ import com.esteban.lopez.budget.databinding.FragmentListValuesBinding
 import com.esteban.lopez.budget.model.db.entities.Expense
 import com.esteban.lopez.budget.model.db.entities.ValueAndCategory
 import com.esteban.lopez.budget.model.db.relations.IncomeAndCategory
-import com.esteban.lopez.budget.view.adapters.BudgetAdapter
 import com.esteban.lopez.budget.view.adapters.ValuesAdapter
+import com.esteban.lopez.budget.view.fragments.dialogs.BudgetDialogFragment
 import com.esteban.lopez.budget.viewmodel.ExpenseViewModel
 import com.esteban.lopez.budget.viewmodel.ExpenseViewModelFactory
 import com.esteban.lopez.budget.viewmodel.IncomeViewModel
@@ -167,7 +166,8 @@ class ValuesListFragment: Fragment() {
 
         //Getting Incomes Reactively
         lifecycleScope.launch{
-            incomeViewModel.getIncomesAndCategory().combineTransform(expenseViewModel.getExpensesAndCategory()) {f1,f2 ->
+            incomeViewModel.getIncomesAndCategory()
+                .combineTransform(expenseViewModel.getExpensesAndCategory()) {f1,f2 ->
                 val list = mutableListOf<ValueAndCategory>()
                 list.addAll(f1)
                 list.addAll(f2)
@@ -194,12 +194,8 @@ class ValuesListFragment: Fragment() {
             }
 
         binding.settingsImage.setOnClickListener {
-            val budgetView = LayoutInflater.from(requireContext()).inflate(R.layout.budget_dialog,binding.root,false)
-            val recyclerView = budgetView.findViewById<RecyclerView>(R.id.recyclerView)
-            recyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
-            recyclerView.adapter = BudgetAdapter(requireContext(),resources.getStringArray(R.array.categories))
-            val budgetDialog:AlertDialog = AlertDialog.Builder(context).setView(budgetView).create()
-            budgetDialog.show()
+            val budgetDialog = BudgetDialogFragment.newInstance()
+            budgetDialog.show(childFragmentManager,"BUDGET_DIALOG")
         }
 
         return binding.root

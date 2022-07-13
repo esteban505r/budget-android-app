@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../Android/Sdk/platforms/android-32/data/res/drawable/edit_text.xml" value="0.1" />
         <entry key="..\:/Users/esteb/Projects/BudgetApp/app/src/main/res/drawable/circular_background.xml" value="0.215" />
         <entry key="..\:/Users/esteb/Projects/BudgetApp/app/src/main/res/drawable/circular_background_bordered.xml" value="0.2165" />
         <entry key="..\:/Users/esteb/Projects/BudgetApp/app/src/main/res/drawable/circular_background_filled.xml" value="0.215" />
@@ -28,6 +29,14 @@
         <entry key="..\:/Users/esteb/Projects/BudgetApp/app/src/main/res/layout/new_income_dialog.xml" value="0.33" />
         <entry key="..\:/Users/esteb/Projects/BudgetApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.32037037037037036" />
         <entry key="..\:/Users/esteb/Projects/BudgetApp/app/src/main/res/menu/example.xml" value="0.325" />
+        <entry key="app/src/main/res/drawable/edit_text_selector.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_monetization_on_24.xml" value="0.154" />
+        <entry key="app/src/main/res/layout/budget_dialog.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/budget_item.xml" value="0.3255208333333333" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/fragment_list_values.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/fragment_money.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/new_value_dialog.xml" value="0.33" />
       </map>
     </option>
   </component>

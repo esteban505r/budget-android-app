@@ -17,7 +17,7 @@ interface IncomeDAO {
     @Insert
     suspend fun insertAll(vararg income: Income):List<Long>
 
-    @Delete
+    @Delete()
     suspend fun delete(income: Income):Int
 
     @Query("SELECT * FROM income WHERE id = :id LIMIT 1")
