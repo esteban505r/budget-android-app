@@ -30,4 +30,12 @@ interface ExpenseDAO {
     @Query("SELECT * FROM expense")
     fun getExpenseAndCategory(): Flow<List<ExpenseAndCategory>>
 
+    @Transaction
+    @Query("SELECT * FROM expense WHERE category = :categoryId")
+    fun getExpenseAndCategoryByCategoryId(categoryId:Int): Flow<List<ExpenseAndCategory>>
+
+    @Transaction
+    @Query("SELECT * FROM expense WHERE category = :categoryId")
+    suspend fun getExpenseAndCategoryByCategoryIdAwaiting(categoryId:Int):List<ExpenseAndCategory>
+
 }

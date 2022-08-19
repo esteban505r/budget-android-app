@@ -22,6 +22,14 @@ class ExpenseViewModel(private val expenseRepository: ExpenseRepository) : ViewM
         return expenseRepository.getExpenseAndCategory()
     }
 
+    fun getExpensesAndCategoryByCategoryId(categoryId:Int): Flow<List<ExpenseAndCategory>> {
+        return expenseRepository.getExpenseAndCategoryByCategoryId(categoryId)
+    }
+
+    suspend fun getExpensesAndCategoryByCategoryIdAwaiting(categoryId:Int):List<ExpenseAndCategory> {
+        return expenseRepository.getExpenseAndCategoryByCategoryIdAwaiting(categoryId)
+    }
+
     suspend fun insert(expense: Expense): List<Long>{
         return expenseRepository.insert(expense)
     }

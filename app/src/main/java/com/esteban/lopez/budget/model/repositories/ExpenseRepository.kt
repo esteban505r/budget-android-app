@@ -35,4 +35,11 @@ class ExpenseRepository(private val expenseDAO: ExpenseDAO){
     fun getExpenseAndCategory():Flow<List<ExpenseAndCategory>>{
         return expenseDAO.getExpenseAndCategory();
     }
+    fun getExpenseAndCategoryByCategoryId(categoryId:Int):Flow<List<ExpenseAndCategory>>{
+        return expenseDAO.getExpenseAndCategoryByCategoryId(categoryId);
+    }
+
+    suspend fun getExpenseAndCategoryByCategoryIdAwaiting(categoryId: Int): List<ExpenseAndCategory> {
+        return expenseDAO.getExpenseAndCategoryByCategoryIdAwaiting(categoryId);
+    }
 }

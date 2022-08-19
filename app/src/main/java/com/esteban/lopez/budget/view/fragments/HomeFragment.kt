@@ -29,11 +29,6 @@ class HomeFragment : Fragment() {
         val navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(navController.graph)
 
-        binding.bottomNavigationView.background = null
-        binding.bottomNavigationView.menu.getItem(1).isEnabled = false
-
-        binding.bottomNavigationView.setupWithNavController(navController)
-
         setupFab(binding)
 
         return view

@@ -12,7 +12,7 @@
         android:theme="@style/Theme.BudgetApp">
 
         <activity android:name=".view.activities.MainActivity"
-            android:exported="true">
+            android:exported="true" android:theme="@style/splashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

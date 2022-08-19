@@ -1,5 +1,6 @@
 package com.esteban.lopez.budget.view.fragments.dialogs
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,6 +24,7 @@ import com.esteban.lopez.budget.view.Utils.Companion.removeCommas
 import com.esteban.lopez.budget.viewmodel.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import kotlin.math.exp
 
 class NewValueDialogFragment : DialogFragment() {
 
@@ -40,122 +42,157 @@ class NewValueDialogFragment : DialogFragment() {
         CategoryViewModelFactory((activity?.application as Application).categoryRepository)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL,
+            R.style.FullScreenDialog);
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = NewValueDialogBinding.inflate(layoutInflater)
-        val valueEt = binding.valueTextInputLayout.editText
-
-        binding.imageIncomeToggle.isActivated = true
-
-        binding.imageExpensiveToggle.setOnClickListener {
-            it.isActivated = true
-            binding.imageIncomeToggle.isActivated = false
-            binding.textView7.setText(com.esteban.lopez.budget.R.string.expense)
-        }
-
-        binding.imageIncomeToggle.setOnClickListener {
-            it.isActivated = !it.isActivated
-            binding.imageExpensiveToggle.isActivated = false
-            binding.textView7.setText(com.esteban.lopez.budget.R.string.income)
-        }
-
-
-
-
-        lifecycleScope.launch {
-            val list = categoryViewModel.getAllAwaiting();
-            binding.spinner.adapter = ArrayAdapter(
-                requireContext(),
-                android.R.layout.simple_spinner_dropdown_item, list
-            )
-        }
-
-
-        //Listening value changes
-        valueEt?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun afterTextChanged(et: Editable?) {
-                try{
-                    valueEt.removeTextChangedListener(this)
-                    val formatedNumber = Utils.formatNumberToStringWithoutLetters(
-                        et.toString().removeCommas().toDoubleOrNull()
-                    )
-                    valueEt.setText(formatedNumber)
-                    valueEt.setSelection(valueEt.text.toString().lastIndex + 1)
-                    valueEt.addTextChangedListener(this)
-                }
-                catch(e:Exception){
-                    e.printStackTrace()
-                }
-            }
-
-        })
-
-
-        binding.button3.setOnClickListener {
-
-            if (binding.nameTextInputLayout.editText?.text?.isNotEmpty() == true &&
-                binding.descriptionTextField.editText?.text?.isNotEmpty() == true &&
-                binding.valueTextInputLayout.editText?.text?.isNotEmpty() == true &&
-                binding.valueTextInputLayout.editText?.text?.toString()?.removeCommas()
-                    ?.isDigitsOnly() == true
-            ) {
-                if (binding.imageIncomeToggle.isActivated) {
-                    //Income
-                    lifecycleScope.launch {
-                        val income = Income(
-                            name = binding.nameTextInputLayout.editText?.text?.toString() ?: "",
-                            description = binding.descriptionTextField.editText?.text?.toString(),
-                            value = binding.valueTextInputLayout.editText?.text?.toString()
-                                ?.removeCommas()
-                                ?.toDouble() ?: 0.0,
-                            category = (binding.spinner.selectedItem as Category?)?.id ?: 0
-                        );
-
-                        val fieldsInserted = incomeViewModel.insert(income)
-                        print("Se han insertado $fieldsInserted campos")
-                    }
-                } else {
-                    //Expense
-                    lifecycleScope.launch {
-                        val expense = Expense(
-                            name = binding.nameTextInputLayout.editText?.text?.toString() ?: "",
-                            description = binding.descriptionTextField.editText?.text?.toString(),
-                            value = binding.valueTextInputLayout.editText?.text?.toString()
-                                ?.removeCommas()
-                                ?.toDouble() ?: 0.0,
-                            category = (binding.spinner.selectedItem as Category?)?.id ?: 0
-                        );
-
-                        val fieldsInserted = expenseViewModel.insert(expense)
-                        print("Se han insertado $fieldsInserted campos")
-                    }
-                }
-                dismiss()
-            } else {
-                if (binding.valueTextInputLayout.editText?.text?.toString()?.removeCommas()
-                        ?.isDigitsOnly() == false
-                ) {
-                    Snackbar.make(
-                        this.binding.root,
-                        getString(com.esteban.lopez.budget.R.string.error_digits_only),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Snackbar.make(
-                        this.binding.root,
-                        getString(com.esteban.lopez.budget.R.string.error_empty_fields),
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
+//        val valueEt = binding.valueTextInputLayout.editText
+//
+//        binding.imageIncomeToggle.isActivated = true
+//
+//        binding.imageExpensiveToggle.setOnClickListener {
+//            it.isActivated = true
+//            binding.imageIncomeToggle.isActivated = false
+//            binding.textView7.setText(com.esteban.lopez.budget.R.string.expense)
+//        }
+//
+//        binding.imageIncomeToggle.setOnClickListener {
+//            it.isActivated = !it.isActivated
+//            binding.imageExpensiveToggle.isActivated = false
+//            binding.textView7.setText(com.esteban.lopez.budget.R.string.income)
+//        }
+//
+//
+//
+//
+//        lifecycleScope.launch {
+//            val list = categoryViewModel.getAllAwaiting();
+//            binding.spinner.adapter = ArrayAdapter(
+//                requireContext(),
+//                android.R.layout.simple_spinner_dropdown_item, list
+//            )
+//        }
+//
+//
+//        //Listening value changes
+//        valueEt?.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//            }
+//
+//            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+//
+//            override fun afterTextChanged(et: Editable?) {
+//                try {
+//                    valueEt.removeTextChangedListener(this)
+//                    val formatedNumber = Utils.formatNumberToStringWithoutLetters(
+//                        et.toString().removeCommas().toDoubleOrNull()
+//                    )
+//                    valueEt.setText(formatedNumber)
+//                    valueEt.setSelection(valueEt.text.toString().lastIndex + 1)
+//                    valueEt.addTextChangedListener(this)
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//            }
+//
+//        })
+//
+//
+//        binding.button3.setOnClickListener {
+//
+//            if (binding.nameTextInputLayout.editText?.text?.isNotEmpty() == true &&
+//                binding.valueTextInputLayout.editText?.text?.isNotEmpty() == true &&
+//                binding.valueTextInputLayout.editText?.text?.toString()?.removeCommas()
+//                    ?.isDigitsOnly() == true
+//            ) {
+//                if (binding.imageIncomeToggle.isActivated) {
+//                    //Income
+//                    lifecycleScope.launch {
+//                        val income = Income(
+//                            name = binding.nameTextInputLayout.editText?.text?.toString() ?: "",
+//                            description = binding.descriptionTextField.editText?.text?.toString(),
+//                            value = binding.valueTextInputLayout.editText?.text?.toString()
+//                                ?.removeCommas()
+//                                ?.toDouble() ?: 0.0,
+//                            category = (binding.spinner.selectedItem as Category?)?.id ?: 0
+//                        );
+//
+//                        val fieldsInserted = incomeViewModel.insert(income)
+//                        print("Se han insertado $fieldsInserted campos")
+//                    }
+//                } else {
+//                    //Expense
+//                    lifecycleScope.launch {
+//                        val category = (binding.spinner.selectedItem as? Category)
+//                        val budget = category?.budget ?: 0.0
+//                        val value = binding.valueTextInputLayout.editText?.text?.toString()
+//                            ?.removeCommas()
+//                            ?.toDouble() ?: 0.0
+//
+//                        if (budget > 0.0) {
+//                            val expenses =
+//                                expenseViewModel.getExpensesAndCategoryByCategoryIdAwaiting(
+//                                    category?.id ?: 0
+//                                )
+//                            val total = expenses.sumOf { it.value.value } + value
+//                            if (total > budget) {
+//                                AlertDialog.Builder(requireContext())
+//                                    .setMessage(getString(R.string.warning_expense_limit))
+//                                    .setPositiveButton(
+//                                        getString(android.R.string.ok)
+//                                    ) { p0, p1 ->
+//
+//
+//                                        lifecycleScope.launch {
+//                                            val expense = Expense(
+//                                                name = binding.nameTextInputLayout.editText?.text?.toString()
+//                                                    ?: "",
+//                                                description = binding.descriptionTextField.editText?.text?.toString(),
+//                                                value = value,
+//                                                category = (binding.spinner.selectedItem as Category?)?.id
+//                                                    ?: 0
+//                                            );
+//
+//                                            val fieldsInserted = expenseViewModel.insert(expense)
+//                                            print("Se han insertado $fieldsInserted campos")
+//                                        }
+//
+//                                        dismiss()
+//                                    }.setNegativeButton(getString(android.R.string.cancel)
+//                                    ) { p0, p1 -> dismiss() }
+//                                    .show()
+//                            }
+//                        }
+//
+//                    }
+//                }
+//                dismiss()
+//            } else {
+//                if (binding.valueTextInputLayout.editText?.text?.toString()?.removeCommas()
+//                        ?.isDigitsOnly() == false
+//                ) {
+//                    Snackbar.make(
+//                        this.binding.root,
+//                        getString(com.esteban.lopez.budget.R.string.error_digits_only),
+//                        Snackbar.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    Snackbar.make(
+//                        this.binding.root,
+//                        getString(com.esteban.lopez.budget.R.string.error_empty_fields),
+//                        Snackbar.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//        }
 
 
         return binding.root

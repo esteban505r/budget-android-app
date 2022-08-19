@@ -16,6 +16,7 @@
     <string name="incomesAndExpensesEmpty">No tienes ingresos ni egresos, agrega uno!</string>
     <string name="category">Categoria</string>
     <string name="budget">Presupuesto</string>
+    <string name="budget_upper">PRESUPUESTO</string>
     <string name="budget_dialog_description">Escribe a continuacion cuanto es lo maximo que puedes gastarte por cada categoria</string>
     <string name="add_category">Agregar categoria</string>
     <string name="name">Nombre</string>
@@ -23,6 +24,14 @@
     <string name="error_inserting_category">Error creando categoria, intentalo de nuevo.</string>
     <string name="error_deleting_category">Error eliminando la categoria, intentalo de nuevo.</string>
     <string name="error_updating_category">Error actualizando categoria, intentalo de nuevo</string>
+    <string name="warning_expense_limit">Este gasto esta superando tu presupuesto en esta categoria, estas seguro?</string>
+    <string name="incomes_upper">INGRESOS</string>
+    <string name="expenses_upper">GASTOS</string>
+    <string name="new_expense">Nuevo gasto</string>
+    <string name="value">Valor</string>
+    <string name="date">Fecha</string>
+    <string name="invoice">Factura</string>
+    <string name="takephoto">Tomar foto</string>
 
     <string-array name="value_type">
         <item>Ingreso</item>
