@@ -14,6 +14,7 @@ import com.esteban.lopez.budget.R
 import com.esteban.lopez.budget.databinding.FragmentMoneyBinding
 import com.esteban.lopez.budget.view.Utils
 import com.esteban.lopez.budget.view.adapters.BudgetAdapter
+import com.esteban.lopez.budget.view.fragments.dialogs.NewValueDialogFragment
 import com.esteban.lopez.budget.viewmodel.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -43,7 +44,9 @@ class MoneyFragment : Fragment() {
     ): View {
 
         binding = FragmentMoneyBinding.inflate(layoutInflater)
-
+        binding.seeAllTransactionsTxt.setOnClickListener{
+           findNavController().navigate(R.id.valuesListFragment)
+        }
 
         return binding.root
     }

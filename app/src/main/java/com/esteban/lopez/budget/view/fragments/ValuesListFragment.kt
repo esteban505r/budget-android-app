@@ -193,10 +193,10 @@ class ValuesListFragment: Fragment() {
             }
             }
 
-        binding.settingsImage.setOnClickListener {
-            val budgetDialog = BudgetDialogFragment.newInstance()
-            budgetDialog.show(childFragmentManager,"BUDGET_DIALOG")
-        }
+//        binding.settingsImage.setOnClickListener {
+//            val budgetDialog = BudgetDialogFragment.newInstance()
+//            budgetDialog.show(childFragmentManager,"BUDGET_DIALOG")
+//        }
 
         return binding.root
     }

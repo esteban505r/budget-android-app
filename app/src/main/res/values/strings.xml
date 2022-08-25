@@ -32,6 +32,11 @@
     <string name="date">Fecha</string>
     <string name="invoice">Factura</string>
     <string name="takephoto">Tomar foto</string>
+    <string name="transactions">Transacciones</string>
+    <string name="budget_desc">Escribe a continuacion cuanto es lo maximo que puedes gastarte por cada categoria</string>
+    <string name="edit_category">Editar categoria</string>
+    <string name="percentage">Porcentaje</string>
+    <string name="income_percentage_question">¿Porcentaje de ingresos?</string>
 
     <string-array name="value_type">
         <item>Ingreso</item>

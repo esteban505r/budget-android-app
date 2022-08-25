@@ -2,10 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.BudgetApp" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
+        <item name="android:colorPrimary">@color/blue_200</item>
         <item name="background">@color/background</item>
         <item name="cardBackgroundColor">@color/white</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textColorHighlight">@color/white</item>
+        <item name="hintTextColor">@color/gray_100</item>
         <item name="android:textColorSecondary">@color/gray_100</item>
         <!-- Secondary brand color. -->
         <item name="colorOnSecondary">@color/black</item>
@@ -41,7 +43,8 @@
         <item name="fontFamily">@font/signika_negative_light</item>
     </style>
 
-    <style name="FullScreenDialog" parent="Theme.AppCompat.Light.Dialog">
+    <style name="FullScreenDialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimary">@color/purple_200</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:padding">0dp</item>

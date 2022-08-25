@@ -46,9 +46,6 @@ class BudgetDialogFragment : DialogFragment() {
     ): View {
         binding = BudgetDialogBinding.inflate(layoutInflater)
 
-        binding.closeImgBtn.setOnClickListener {
-            dismiss()
-        }
 
         binding.recyclerView.layoutManager = LinearLayoutManager(
             requireContext(),
